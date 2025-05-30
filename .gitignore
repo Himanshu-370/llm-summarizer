@@ -1,0 +1,4 @@
+.env
+documents.db
+temp_files
+venv

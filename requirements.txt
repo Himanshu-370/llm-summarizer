@@ -1,0 +1,10 @@
+fastapi
+uvicorn
+sqlalchemy
+pydantic
+httpx
+python-dotenv
+aiofiles      
+PyMuPDF      
+python-docx
+python-multipart
