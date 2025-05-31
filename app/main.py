@@ -1,6 +1,7 @@
 from fastapi import FastAPI, UploadFile, File, Depends, HTTPException
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker, Session
+from fastapi.middleware.cors import CORSMiddleware
 from . import models, schemas, crud, utils
 import os
 from dotenv import load_dotenv
@@ -15,6 +16,15 @@ SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
 models.Base.metadata.create_all(bind=engine)
 
 app = FastAPI(title = "AI-powered Document Summarizer")
+
+# 👇 Add this CORS config
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],  # Or ["https://my-ui.vercel.app"] for production
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 def get_db():
     db = SessionLocal()
